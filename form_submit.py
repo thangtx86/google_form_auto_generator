@@ -29,8 +29,8 @@ def fill_random_value(type_id, entry_id, options, required=False, entry_name='')
     
     # Dictionary to map type_id to their respective random value handling function
     type_handlers = {
-        0: lambda: '' if not required else '',  # Short answer
-        1: lambda: '' if not required else '',  # Paragraph
+        0: lambda: '' if not required else 'ghhghghghg@gmail.com',  # Short answer
+        1: lambda: '' if not required else 'sssssss@gmail.com',  # Paragraph
         2: lambda: helper.get_random_choice(options),    # Multiple choice
         3: lambda: helper.get_random_choice(options),    # Dropdown
         4: lambda: helper.get_random_choice(options, num_choices=random.randint(1, len(options))),  # Checkboxes
@@ -61,11 +61,11 @@ def submit(url: str, data: any):
     ''' Submit form to url with data '''
     url = google_form.transform_form_url_to_response_url(url)
     print("Submitting to", url)
-    print("Data:", data, flush = True)
+    # print("Data:", data, flush = True)
    
     res = requests.post(url, data=data, timeout=5)
     if res.status_code != 200:
-        print("Error! Can't submit form", res.status_code)
+        print("Error! Can't submit form", res.text)
 
 def main(url, only_required = False):
     try:
@@ -78,9 +78,13 @@ def main(url, only_required = False):
 
 RUN_TOTAL = 1
 
-if __name__ == '__main__':
-    for i in range(RUN_TOTAL):
-        print(f"Run {i + 1}")
-        main(url=URL_T)
-        
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=" Autofill and Submit Google Form")
+    parser.add_argument("url", help="url of the form")
+    parser.add_argument("-r", "--required", action="store_true", help="Only submit required fields")
+    args = parser.parse_args()
+    main(
+        url=args.url,
+        only_required=args.required,
+    )
       

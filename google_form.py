@@ -185,7 +185,7 @@ def handle_google_form_submission(form_url, output="console", only_required=Fals
         fields = autofill_form_fields_with_defaults(fields, auto_fill_func)
 
     payload = generate_submission_payload(fields, include_comments)
-    print("Payload:", payload, flush=True)
+    # print("Payload:", payload, flush=True)
     
     output_handlers = {
         "console": lambda: print(payload),
