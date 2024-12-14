@@ -47,10 +47,10 @@ https://docs.google.com/forms/d/e/<form-id>/formResponse
 
 ### 2. **Extract Form Information**
 #### Automatically Extract Information
-Use the `extract_form.py` script to automatically extract information about the form fields. This script will help you gather the field IDs that you'll need for the next step.
+Use the `google_form.py` script to automatically extract information about the form fields. This script will help you gather the field IDs that you'll need for the next step.
 
 ```
-python extract_form.py <form-url>
+python google_form.py <form-url>
 ```
 
 This will return the necessary field information and their corresponding IDs.
