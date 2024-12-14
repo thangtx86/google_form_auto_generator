@@ -32,9 +32,7 @@ Let's get started!
 - `faker` library (random email)
 
 # Getting Started
-If you're looking to quickly fill and submit a Google Form with random data, or customize the script to autofill with your own data, feel free to jump straight to the AutoFill and Submit section.
 
-However, if you're interested in learning the process of creating a Python script to automate form submissions, follow the steps below. For those who want to skip the manual inspection, you can use the form.py script to automatically generate the request body, as detailed in the Extract Information Automatically section.
 ### 1. **Get the Google Form URL**
 To submit data to a Google Form, you'll need the form's URL. Typically, the form URL looks like this:
 ```
