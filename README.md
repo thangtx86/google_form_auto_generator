@@ -237,4 +237,4 @@ Email: tranthang8696@gmail.com
 
 Telegram: @thangtx86
 
-Whashapp:  +(84) 886 620 246
+Whatsapp:  +(84) 886 620 246
