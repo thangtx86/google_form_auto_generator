@@ -21,7 +21,7 @@ Let's get started!
 
 - [x]   **Fully supports multi-page Forms**, making it easier to automate complex forms.
 - [x]  **Compatible with Google Forms that collect email addresses**, automatically inputting responder data.
-- [x]  **Automatically generates the request body** using the efficient `form.py` script, streamlining the process.
+- [x]  **Automatically generates the request body** using the efficient `google_form.py` script, streamlining the process.
 - [x]  **Auto-fills the form with customizable random values** and submits it, saving you time and effort.
 - [ ] **Submit multiple forms at once** by specifying the desired number of submissions.
 
