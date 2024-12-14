@@ -52,8 +52,96 @@ Use the `google_form.py` script to automatically extract information about the f
 ```
 python google_form.py <form-url>
 ```
+Also, You can also use -o out.txt to extract data taken from google form into file format so you can visualize its data.
+ *(python google_form.py <form-url> -o filepath.txt)*
 
 This will return the necessary field information and their corresponding IDs.
+
+#### For output Example (when run ```python google_form.py <form-url> -o output.txt```):
+
+```
+{
+    # ---------------------------------------1---------------------------------------------
+    # Question: Question 1
+    # (Optional)
+    #   Answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4']
+    "entry.1588477123": ""
+,
+    # ---------------------------------------2---------------------------------------------
+    # Question: Question 2 (Write something)
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.592612042": ""
+,
+    # ---------------------------------------3---------------------------------------------
+    # Question: Question 3 (paragraph)
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.2088709806": ""
+,
+    # ---------------------------------------4---------------------------------------------
+    # Question: Question 4 (Checkbox)
+    # (Optional)
+    #   Answers: ['Option 1', 'Option 2', 'Option 3', 'Option 4']
+    "entry.928024575": ""
+,
+    # ---------------------------------------5---------------------------------------------
+    # Question: Question 5
+    # (Optional)
+    #   Answers: ['Opt 1', 'Otp 2', 'Otp 3']
+    "entry.1878463051": ""
+,
+    # ---------------------------------------6---------------------------------------------
+    # Question: Queston 6: Row 1
+    # (Optional)
+    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
+    "entry.1762622840": ""
+,
+    # ---------------------------------------7---------------------------------------------
+    # Question: Queston 6: Row 2
+    # (Optional)
+    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
+    "entry.550872671": ""
+,
+    # ---------------------------------------8---------------------------------------------
+    # Question: Queston 6: Row 3
+    # (Optional)
+    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
+    "entry.384063441": ""
+,
+    # ---------------------------------------9---------------------------------------------
+    # Question: Queston 6: Row 4
+    # (Optional)
+    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
+    "entry.631424289": ""
+,
+    # ---------------------------------------10---------------------------------------------
+    # Question: Queston 6: Row 5
+    # (Optional)
+    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
+    "entry.1376268242": ""
+,
+    # ---------------------------------------11---------------------------------------------
+    # Question: Question 8
+    # (Optional)
+    #   Validation Rule: YYYY-MM-DD
+    "entry.139813856": ""
+,
+    # ---------------------------------------12---------------------------------------------
+    # Question: Email Address
+    # (Required)
+    #   Answers: email address
+    "emailAddress": ""
+,
+    # ---------------------------------------13---------------------------------------------
+    # Question: Page History
+    # (Optional)
+    #   Answers: from 0 to (number of page - 1)
+    "pageHistory": "0,1"
+
+}
+
+```
 
 #### Manually
 
@@ -79,7 +167,29 @@ For a 6-page form, the `pageHistory` field should be as follows:
 Once you have the form field information, you can write a Python script to fill the form. Here's an example:
 
 ```py
-# sample
+import form_submit
+
+URL = "https://docs.google.com/forms/d/107JbdZnD0ntlHGDUe_PzsDcriMEcaPGN0wFw0HLXTvc/viewform"
+def manually_fill():
+    payload = {
+        'entry.1588477123': 'Answer 1',
+        'entry.592612042': 'Sample',
+        'entry.2088709806': 'Sample',
+        'entry.928024575': ['Option 3', 'Option 2', 'Option 4', 'Option 1'],
+        'entry.1878463051': 'Otp 3',
+        'entry.1762622840': 'Column 3',
+        'entry.550872671': 'Column 5',
+        'entry.384063441': 'Column 5',
+        'entry.631424289': 'Column 4',
+        'entry.1376268242': 'Column 3',
+        'entry.139813856': '2024-12-14',
+        'emailAddress': 'email@email.com',
+        'pageHistory': '0,1',
+    }
+    
+    return payload
+
+form_submit.submit(URL, manually_fill())
 ```
 
 
@@ -89,10 +199,20 @@ After writing the script, you can run the following command to automatically fil
 ```
 python form_submit.py <form-url>
 ```
+Additionally, if you only want to fill in the required fields and skip optional ones, you can use this command:
+
+```
+python form_submit.py <form-url> -r
+```
+
 For example:
 
 ```
-python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/formResponse'
+python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/viewform'
+```
+or 
+```
+python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/viewform' -r
 ```
 
 #### ⚙️ Customize the Script

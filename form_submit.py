@@ -61,7 +61,7 @@ def submit(url: str, data: any):
     ''' Submit form to url with data '''
     url = google_form.transform_form_url_to_response_url(url)
     print("Submitting to", url)
-    # print("Data:", data, flush = True)
+    print("Payload:", data, flush = True)
    
     res = requests.post(url, data=data, timeout=5)
     if res.status_code != 200:
