@@ -57,7 +57,9 @@ Also, You can also use -o out.txt to extract data taken from google form into fi
 
 This will return the necessary field information and their corresponding IDs.
 
-#### For output Example (when run ```python google_form.py <form-url> -o output.txt```):
+#### For output Example (when run ```python google_form.py <form-url> -o output.txt```) with URL at below:
+
+ https://docs.google.com/forms/d/107JbdZnD0ntlHGDUe_PzsDcriMEcaPGN0wFw0HLXTvc/viewform
 
 ```
 {
