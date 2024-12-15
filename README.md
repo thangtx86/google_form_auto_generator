@@ -1,7 +1,6 @@
 
 # Automatically Fill and Submit Google Form
 
-Automatically Fill and Submit Google Form
 Have you ever felt that filling out Google Forms daily, or even hourly, is a tedious and time-consuming task? Especially when you only need to change a few simple values but have to repeat the process over and over again for a long time. I'm sure you've wondered: Is there a way to automate this task?
 
 Well, absolutely! You can fully automate the process of filling out and submitting Google Forms without lifting a finger, all with just a simple Python script.
@@ -23,7 +22,8 @@ Let's get started!
 - [x]  **Compatible with Google Forms that collect email addresses**, automatically inputting responder data.
 - [x]  **Automatically generates the request body** using the efficient `google_form.py` script, streamlining the process.
 - [x]  **Auto-fills the form with customizable random values** and submits it, saving you time and effort.
-- [ ] **Submit multiple forms at once** by specifying the desired number of submissions.
+- [x] **Submit multiple forms at once** by specifying the desired number of submissions.
+
 
 ## Prerequisites
 - Python 3.x
