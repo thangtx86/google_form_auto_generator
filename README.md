@@ -57,87 +57,167 @@ This will return the necessary field information and their corresponding IDs.
 
 #### For output Example (when run ```python google_form.py <form-url> -o output.txt```) with URL at below:
 
- https://docs.google.com/forms/d/107JbdZnD0ntlHGDUe_PzsDcriMEcaPGN0wFw0HLXTvc/viewform
+ ```python google_form.py https://docs.google.com/forms/d/1PS5LMEs-C0T2EkJmoEHbv-zhNhGwZO4RenWu7CXJGoA/viewform -o output.txt```
+
+ex:
 
 ```
 {
     # ---------------------------------------1---------------------------------------------
-    # Question: Question 1
+    # Question: Full Name
     # (Optional)
-    #   Answers: ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4']
-    "entry.1588477123": ""
+    #   Validation Rule: any text
+    "entry.1908571199": ""
 ,
     # ---------------------------------------2---------------------------------------------
-    # Question: Question 2 (Write something)
-    # (Optional)
+    # Question: Contact Email
+    # (Required)
     #   Validation Rule: any text
-    "entry.592612042": ""
+    "entry.28611126": ""
 ,
     # ---------------------------------------3---------------------------------------------
-    # Question: Question 3 (paragraph)
+    # Question: Gender
     # (Optional)
-    #   Validation Rule: any text
-    "entry.2088709806": ""
+    #   Answers: ['Male', 'Female', 'Other']
+    "entry.1204198231": ""
 ,
     # ---------------------------------------4---------------------------------------------
-    # Question: Question 4 (Checkbox)
+    # Question: Your Age Group
     # (Optional)
-    #   Answers: ['Option 1', 'Option 2', 'Option 3', 'Option 4']
-    "entry.928024575": ""
+    #   Answers: ['Under 18', '18-24', '25-34', '35-44', 'Over 45']
+    "entry.295633829": ""
 ,
     # ---------------------------------------5---------------------------------------------
-    # Question: Question 5
+    # Question: How many times do you travel per year?
     # (Optional)
-    #   Answers: ['Opt 1', 'Otp 2', 'Otp 3']
-    "entry.1878463051": ""
+    #   Answers: ['1-2 times', '3-5 times', 'More than 5 times']
+    "entry.1463829470": ""
 ,
     # ---------------------------------------6---------------------------------------------
-    # Question: Queston 6: Row 1
+    # Question: What travel destinations would you like to visit in the future?
     # (Optional)
-    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
-    "entry.1762622840": ""
+    #   Answers: ['Mountains', 'Beach', 'Modern city', 'Cultural/historical heritage', 'Rural areas']
+    "entry.598842785": ""
 ,
     # ---------------------------------------7---------------------------------------------
-    # Question: Queston 6: Row 2
+    # Question: When do you usually plan your trips?
     # (Optional)
-    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
-    "entry.550872671": ""
+    #   Answers: ['Spring', 'Summer', 'Autumn', 'Winter', 'Not fixed']
+    "entry.2134336363": ""
 ,
     # ---------------------------------------8---------------------------------------------
-    # Question: Queston 6: Row 3
+    # Question: Who do you usually travel with?
     # (Optional)
-    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
-    "entry.384063441": ""
+    #   Answers: ['Alone', 'Family', 'Friends', 'Partner', 'Crush']
+    "entry.143396356": ""
 ,
     # ---------------------------------------9---------------------------------------------
-    # Question: Queston 6: Row 4
+    # Question: What was your most recent travel experience?
     # (Optional)
-    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
-    "entry.631424289": ""
+    #   Validation Rule: any text
+    "entry.1720750409": ""
 ,
     # ---------------------------------------10---------------------------------------------
-    # Question: Queston 6: Row 5
+    # Question: What is your preferred mode of transportation when traveling?
     # (Optional)
-    #   Answers: ['Column  1', 'Column 2', 'Column 3', 'Column 4', 'Column 5']
-    "entry.1376268242": ""
+    #   Answers: ['Airplane', 'Train', 'Car', 'Motorcycle', 'Public transportation']
+    "entry.500480593": ""
 ,
     # ---------------------------------------11---------------------------------------------
-    # Question: Question 8
+    # Question: What is the most important factor when choosing a travel destination?
     # (Optional)
-    #   Validation Rule: YYYY-MM-DD
-    "entry.139813856": ""
+    #   Answers: ['Beautiful scenery', 'Local culture', 'Affordable costs', 'Delicious food', 'Close to nature', 'Good infrastructure', 'Engaging activities']
+    "entry.1512138449": ""
 ,
     # ---------------------------------------12---------------------------------------------
+    # Question: What type of travel do you prefer?
+    # (Optional)
+    #   Answers: ['Leisure travel', 'Adventure travel', 'Independent travel', 'Group tours', 'Business trips combined with leisure']
+    "entry.853858371": ""
+,
+    # ---------------------------------------13---------------------------------------------
+    # Question: What strengths do you think the tourism industry in Da Nang has?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.50875002": ""
+,
+    # ---------------------------------------14---------------------------------------------
+    # Question: What aspects of tourism in Da Nang are you dissatisfied with?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.66152489": ""
+,
+    # ---------------------------------------15---------------------------------------------
+    # Question: How much are you willing to spend on each trip?
+    # (Optional)
+    #   Answers: ['Under 5 million VND', '5-10 million VND', '10-20 million VND', 'Over 20 million VND']
+    "entry.1100270122": ""
+,
+    # ---------------------------------------16---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Natural scenery
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.516363970": ""
+,
+    # ---------------------------------------17---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Cost
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.832965611": ""
+,
+    # ---------------------------------------18---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Service quality
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.59865805": ""
+,
+    # ---------------------------------------19---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Safety
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.493972964": ""
+,
+    # ---------------------------------------20---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Local food
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.1010730600": ""
+,
+    # ---------------------------------------21---------------------------------------------
+    # Question: When was the last time you traveled?
+    # (Optional)
+    #   Validation Rule: YYYY-MM-DD
+    "entry.1178398439": ""
+,
+    # ---------------------------------------22---------------------------------------------
+    # Question: What time of day do you usually start your trips?
+    # (Optional)
+    #   Validation Rule: HH:MM (24h format)
+    "entry.1897488531": ""
+,
+    # ---------------------------------------23---------------------------------------------
+    # Question: If you had the chance, which country would you like to visit?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.411302613": ""
+,
+    # ---------------------------------------24---------------------------------------------
+    # Question: Please rank the following factors in order of importance when choosing a travel destination (1 = most important, 5 = least important)
+    # (Optional)
+    #   Answers: ['1', '2', '3', '4', '5']
+    "entry.1608779174": ""
+,
+    # ---------------------------------------25---------------------------------------------
     # Question: Email Address
     # (Required)
     #   Answers: email address
     "emailAddress": ""
 ,
-    # ---------------------------------------13---------------------------------------------
+    # ---------------------------------------26---------------------------------------------
     # Question: Page History
     # (Optional)
     #   Answers: from 0 to (number of page - 1)
-    "pageHistory": "0,1"
+    "pageHistory": "0,1,2,3,4,5,6"
 
 }
 
@@ -169,23 +249,37 @@ Once you have the form field information, you can write a Python script to fill 
 ```py
 import form_submit
 
-URL = "https://docs.google.com/forms/d/107JbdZnD0ntlHGDUe_PzsDcriMEcaPGN0wFw0HLXTvc/viewform"
+URL = "https://docs.google.com/forms/d/1PS5LMEs-C0T2EkJmoEHbv-zhNhGwZO4RenWu7CXJGoA/viewform"
 def manually_fill():
     payload = {
-        'entry.1588477123': 'Answer 1',
-        'entry.592612042': 'Sample',
-        'entry.2088709806': 'Sample',
-        'entry.928024575': ['Option 3', 'Option 2', 'Option 4', 'Option 1'],
-        'entry.1878463051': 'Otp 3',
-        'entry.1762622840': 'Column 3',
-        'entry.550872671': 'Column 5',
-        'entry.384063441': 'Column 5',
-        'entry.631424289': 'Column 4',
-        'entry.1376268242': 'Column 3',
-        'entry.139813856': '2024-12-14',
-        'emailAddress': 'email@email.com',
-        'pageHistory': '0,1',
-    }
+    'entry.1908571199': 'Trịnh Trần Phương Tuấn',
+    'entry.28611126': 'trinhtranphuongtuan_5m@@gmail.com',
+    'entry.1204198231': 'Male',
+    'entry.295633829': '35-44',
+    'entry.1463829470': '1-2 times',
+    'entry.598842785': ['Mountains', 'Rural areas', 'Beach'],
+    'entry.2134336363': ['Summer', 'Spring', 'Winter', 'Autumn'],
+    'entry.143396356': 'Alone',
+    'entry.1720750409': 'My most recent travel experience was a trip to Da Nang, Vietnam. I spent time exploring the beautiful beaches, visited the famous Marble Mountains, and enjoyed the delicious local cuisine, such as Mi Quang and Banh Xeo. The city was a perfect blend of modernity and traditional charm, with friendly locals and breathtaking landscapes.',
+    'entry.500480593': ['Airplane', 'Car', 'Train', 'Public transportation', 'Motorcycle'],
+    'entry.1512138449': ['Good infrastructure', 'Beautiful scenery', 'Local culture', 'Delicious food', 'Close to nature', 'Affordable costs'],
+    'entry.853858371': 'Independent travel',
+    'entry.50875002': 'Da Nang has several strengths in the tourism industry. First, its strategic location, with proximity to historical sites like Hoi An and Hue, makes it an ideal base for tourists. The city also offers stunning beaches like My Khe Beach, which attract beach lovers and adventure seekers. Additionally, the hospitality and friendliness of the people, along with an expanding infrastructure, contribute to making Da Nang a popular destination for both domestic and international tourists.',
+    'entry.66152489': 'While Da Nang is a beautiful destination with a lot to offer, there are a few aspects of the tourism industry that could be improved. First, the traffic congestion, especially during peak tourist seasons, can be quite frustrating. The city's infrastructure is still developing, and road conditions or the lack of efficient public transportation can hinder the overall experience. Additionally, while the popularity of Da Nang has been rising, some tourist attractions could benefit from better management in terms of cleanliness and facilities. Finally, more focus on sustainable tourism practices would help preserve the natural beauty of the area for future generations. This response highlights some areas for improvement in a constructive way.',
+    'entry.1100270122': 'Over 20 million VND',
+    'entry.516363970': 'Important',
+    'entry.832965611': 'Important',
+    'entry.59865805': 'Neutral',
+    'entry.493972964': 'Important',
+    'entry.1010730600': 'Not Important',
+    'entry.1178398439': '2024-12-15',
+    'entry.1897488531': '15:40',
+    'entry.411302613': 'If I had the chance, I would love to visit Japan. I’m fascinated by its rich culture, ancient temples, beautiful landscapes like Mount Fuji, and vibrant cities such as Tokyo and Kyoto. I would also love to experience the unique Japanese traditions, including tea ceremonies, and enjoy the cherry blossoms in spring.',
+    'entry.1608779174': '2',
+    'emailAddress': 'trinhtranphuongtuan_5m@@gmail.com',
+    'pageHistory': '0,1,2,3,4,5,6'
+}
+
     
     return payload
 
@@ -211,15 +305,37 @@ For example:
 python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/viewform'
 ```
 or 
+* Only submit required field *
 ```
 python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/viewform' -r
 ```
+or If you want the form submission count to meet your requirements, try adjusting it according to the suggestion below
+
+```
+python form_submit.py 'https://docs.google.com/forms/d/e/<form-id>/viewform' -n 10
+```
+
 
 #### ⚙️ Customize the Script
 
-You can easily modify the fill_form() function to enter the data you need. For example, if you want to fill in a random date and time:
+You can easily modify the custom fill form function to enter the data you need. For example, if you want to fill in a random date and time:
 ```py
 
+def adjust_data(data):
+    gender_value = data.get('entry.1204198231', '').lower()
+    name_field = 'entry.1908571199'
+    gender_type = 1 if gender_value == 'Male' else 0
+    data[name_field] = helper.generate_random_fullname(gender_type)
+    
+    if data[name_field]:
+        email = helper.generate_email(name=data[name_field],domain="@gmail.com",include_dot=True,include_number=True)
+        data['emailAddress'] = email
+        data['entry.28611126'] = email
+    data['entry.1720750409'] = "My most recent travel experience was a trip to Da Nang, Vietnam. I spent time exploring the beautiful beaches, visited the famous Marble Mountains, and enjoyed the delicious local cuisine, such as Mi Quang and Banh Xeo. The city was a perfect blend of modernity and traditional charm, with friendly locals and breathtaking landscapes."
+    data['entry.50875002'] = "Da Nang has several strengths in the tourism industry. First, its strategic location, with proximity to historical sites like Hoi An and Hue, makes it an ideal base for tourists. The city also offers stunning beaches like My Khe Beach, which attract beach lovers and adventure seekers. Additionally, the hospitality and friendliness of the people, along with an expanding infrastructure, contribute to making Da Nang a popular destination for both domestic and international tourists."
+    data['entry.66152489'] ="While Da Nang is a beautiful destination with a lot to offer, there are a few aspects of the tourism industry that could be improved. First, the traffic congestion, especially during peak tourist seasons, can be quite frustrating. The city's infrastructure is still developing, and road conditions or the lack of efficient public transportation can hinder the overall experience. Additionally, while the popularity of Da Nang has been rising, some tourist attractions could benefit from better management in terms of cleanliness and facilities. Finally, more focus on sustainable tourism practices would help preserve the natural beauty of the area for future generations. This response highlights some areas for improvement in a constructive way."
+    data['entry.411302613'] = "If I had the chance, I would love to visit Japan. I’m fascinated by its rich culture, ancient temples, beautiful landscapes like Mount Fuji, and vibrant cities such as Tokyo and Kyoto. I would also love to experience the unique Japanese traditions, including tea ceremonies, and enjoy the cherry blossoms in spring."
+    return data
 
 ```
 

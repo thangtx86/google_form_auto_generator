@@ -39,6 +39,7 @@ def parse_google_form_fields(form_url: str, include_only_required=False):
     """Parse fields from a Google Form URL into structured metadata."""
     response_url = transform_form_url_to_response_url(form_url)
     form_data = retrieve_form_metadata(response_url)
+    # print(response_url)
 
     if not form_data or not form_data[1] or not form_data[1][1]:
         print("Unable to retrieve form fields. Login may be required.")
