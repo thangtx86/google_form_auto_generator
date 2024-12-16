@@ -23,6 +23,7 @@ Let's get started!
 - [x]  **Automatically generates the request body** using the efficient `google_form.py` script, streamlining the process.
 - [x]  **Auto-fills the form with customizable random values** and submits it, saving you time and effort.
 - [x] **Submit multiple forms at once** by specifying the desired number of submissions.
+- [ ] Answer questions based on Excel data
 
 
 ## Prerequisites
