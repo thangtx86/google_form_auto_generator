@@ -1,0 +1,164 @@
+{
+    # ---------------------------------------1---------------------------------------------
+    # Question: Full Name
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.1908571199": ""
+,
+    # ---------------------------------------2---------------------------------------------
+    # Question: Contact Email
+    # (Required)
+    #   Validation Rule: any text
+    "entry.28611126": ""
+,
+    # ---------------------------------------3---------------------------------------------
+    # Question: What your number phone?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.1818831264": ""
+,
+    # ---------------------------------------4---------------------------------------------
+    # Question: Gender
+    # (Optional)
+    #   Answers: ['Male', 'Female']
+    "entry.1204198231": ""
+,
+    # ---------------------------------------5---------------------------------------------
+    # Question: Your Age Group
+    # (Optional)
+    #   Answers: ['Under 18', '18-24', '25-34', '35-44', 'Over 45']
+    "entry.295633829": ""
+,
+    # ---------------------------------------6---------------------------------------------
+    # Question: How many times do you travel per year?
+    # (Optional)
+    #   Answers: ['1-2 times', '3-5 times', 'More than 5 times']
+    "entry.1463829470": ""
+,
+    # ---------------------------------------7---------------------------------------------
+    # Question: What travel destinations would you like to visit in the future?
+    # (Optional)
+    #   Answers: ['Mountains', 'Beach', 'Modern city', 'Cultural/historical heritage', 'Rural areas']
+    "entry.598842785": ""
+,
+    # ---------------------------------------8---------------------------------------------
+    # Question: When do you usually plan your trips?
+    # (Optional)
+    #   Answers: ['Spring', 'Summer', 'Autumn', 'Winter', 'Not fixed']
+    "entry.2134336363": ""
+,
+    # ---------------------------------------9---------------------------------------------
+    # Question: Who do you usually travel with?
+    # (Optional)
+    #   Answers: ['Alone', 'Family', 'Friends', 'Partner', 'Crush']
+    "entry.143396356": ""
+,
+    # ---------------------------------------10---------------------------------------------
+    # Question: What was your most recent travel experience?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.1720750409": ""
+,
+    # ---------------------------------------11---------------------------------------------
+    # Question: What is your preferred mode of transportation when traveling?
+    # (Optional)
+    #   Answers: ['Airplane', 'Train', 'Car', 'Motorcycle', 'Public transportation']
+    "entry.500480593": ""
+,
+    # ---------------------------------------12---------------------------------------------
+    # Question: What is the most important factor when choosing a travel destination?
+    # (Optional)
+    #   Answers: ['Beautiful scenery', 'Local culture', 'Affordable costs', 'Delicious food', 'Close to nature', 'Good infrastructure', 'Engaging activities']
+    "entry.1512138449": ""
+,
+    # ---------------------------------------13---------------------------------------------
+    # Question: What type of travel do you prefer?
+    # (Optional)
+    #   Answers: ['Leisure travel', 'Adventure travel', 'Independent travel', 'Group tours', 'Business trips combined with leisure']
+    "entry.853858371": ""
+,
+    # ---------------------------------------14---------------------------------------------
+    # Question: What strengths do you think the tourism industry in Da Nang has?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.50875002": ""
+,
+    # ---------------------------------------15---------------------------------------------
+    # Question: What aspects of tourism in Da Nang are you dissatisfied with?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.66152489": ""
+,
+    # ---------------------------------------16---------------------------------------------
+    # Question: How much are you willing to spend on each trip?
+    # (Optional)
+    #   Answers: ['Under 5 million VND', '5-10 million VND', '10-20 million VND', 'Over 20 million VND']
+    "entry.1100270122": ""
+,
+    # ---------------------------------------17---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Natural scenery
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.516363970": ""
+,
+    # ---------------------------------------18---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Cost
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.832965611": ""
+,
+    # ---------------------------------------19---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Service quality
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.59865805": ""
+,
+    # ---------------------------------------20---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Safety
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.493972964": ""
+,
+    # ---------------------------------------21---------------------------------------------
+    # Question: How important are the following factors to you when traveling? Columns: Very Important, Important, Neutral, Not Important): Local food
+    # (Optional)
+    #   Answers: ['Very Important', 'Important', 'Neutral', 'Not Important']
+    "entry.1010730600": ""
+,
+    # ---------------------------------------22---------------------------------------------
+    # Question: When was the last time you traveled?
+    # (Optional)
+    #   Validation Rule: YYYY-MM-DD
+    "entry.1178398439": ""
+,
+    # ---------------------------------------23---------------------------------------------
+    # Question: What time of day do you usually start your trips?
+    # (Optional)
+    #   Validation Rule: HH:MM (24h format)
+    "entry.1897488531": ""
+,
+    # ---------------------------------------24---------------------------------------------
+    # Question: If you had the chance, which country would you like to visit?
+    # (Optional)
+    #   Validation Rule: any text
+    "entry.411302613": ""
+,
+    # ---------------------------------------25---------------------------------------------
+    # Question: Please rank the following factors in order of importance when choosing a travel destination (1 = most important, 5 = least important)
+    # (Optional)
+    #   Answers: ['1', '2', '3', '4', '5']
+    "entry.1608779174": ""
+,
+    # ---------------------------------------26---------------------------------------------
+    # Question: Email Address
+    # (Required)
+    #   Answers: email address
+    "emailAddress": ""
+,
+    # ---------------------------------------27---------------------------------------------
+    # Question: Page History
+    # (Optional)
+    #   Answers: from 0 to (number of page - 1)
+    "pageHistory": "0,1,2,3,4,5,6"
+
+}

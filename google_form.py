@@ -5,15 +5,17 @@ import requests
 import helper
 import constant
 
+
 def transform_form_url_to_response_url(form_url: str):
     """Transform a Google Form URL to its corresponding response URL."""
     if '/viewform' in form_url:
         return form_url.replace('/viewform', '/formResponse')
     return form_url.rstrip('/') + '/formResponse'
 
+
 def extract_variable_from_script_tag(variable_name: str, html_content: str):
     """Extract the value of a JavaScript variable embedded in HTML script tags."""
-    pattern = re.compile(r'var\s+' + re.escape(variable_name) + r'\s*=\s*(.*?);', re.DOTALL)
+    pattern = re.compile(r'var\s' + variable_name + r'\s*=\s*(\[[\s\S]*?\]);')
     match = pattern.search(html_content)
     if match:
         try:
@@ -21,6 +23,7 @@ def extract_variable_from_script_tag(variable_name: str, html_content: str):
         except json.JSONDecodeError:
             return match.group(1)  # Return raw string if JSON parsing fails
     return None
+
 
 def retrieve_form_metadata(form_url: str):
     """Fetch metadata from a Google Form using its URL."""
@@ -35,11 +38,11 @@ def retrieve_form_metadata(form_url: str):
         print(f"Error fetching form metadata from {form_url}: {e}")
         return None
 
+
 def parse_google_form_fields(form_url: str, include_only_required=False):
     """Parse fields from a Google Form URL into structured metadata."""
     response_url = transform_form_url_to_response_url(form_url)
     form_data = retrieve_form_metadata(response_url)
-    # print(response_url)
 
     if not form_data or not form_data[1] or not form_data[1][1]:
         print("Unable to retrieve form fields. Login may be required.")
@@ -53,6 +56,7 @@ def parse_google_form_fields(form_url: str, include_only_required=False):
 
     return fields_metadata
 
+
 def process_form_fields(form_fields, include_only_required):
     """Process form fields and return parsed metadata."""
     fields_metadata = []
@@ -60,9 +64,11 @@ def process_form_fields(form_fields, include_only_required):
     for field in form_fields:
         if field[3] == constant.SESSION_ID:  # Skip session fields
             continue
-        fields_metadata.extend(parse_field_metadata(field, include_only_required))  # Extend the list with parsed field data
+        fields_metadata.extend(
+            parse_field_metadata(field, include_only_required))  # Extend the list with parsed field data
 
     return fields_metadata
+
 
 def parse_field_metadata(field, include_only_required):
     """Parse field metadata and return structured info."""
@@ -78,9 +84,10 @@ def parse_field_metadata(field, include_only_required):
             "name": ' - '.join(sub_field[3]) if (len(sub_field) > 3 and sub_field[3]) else None,
             "options": [(opt[0] or constant.ANY_TEXT) for opt in sub_field[1]] if sub_field[1] else None,
         }
-        for sub_field in field[4]
+        for sub_field in field[4] or []
         if not include_only_required or sub_field[2] == 1
     ]
+
 
 def count_page_fields(form_fields):
     """Count page fields in the form."""
@@ -89,6 +96,7 @@ def count_page_fields(form_fields):
         if field[3] == constant.SESSION_ID:  # Skip session fields
             page_count += 1
     return page_count
+
 
 def add_optional_metadata(fields_metadata, form_data, page_count):
     """Add optional metadata like email and page history."""
@@ -111,6 +119,7 @@ def add_optional_metadata(fields_metadata, form_data, page_count):
         })
     return fields_metadata
 
+
 def autofill_form_fields_with_defaults(fields, auto_fill_func):
     """Autofill form fields using a custom fill algorithm."""
     for field in fields:
@@ -129,6 +138,7 @@ def autofill_form_fields_with_defaults(fields, auto_fill_func):
 
     return fields
 
+
 def generate_submission_payload(fields, include_comments=True):
     """Create a JSON payload for form submission."""
     payload_parts = ["{"]
@@ -137,35 +147,41 @@ def generate_submission_payload(fields, include_comments=True):
         # Add comments if necessary
         if include_comments:
             comment_lines = [
-                    f"    # ---------------------------------------{idx+1}---------------------------------------------",
-                    f"    # Question: {field['container_name']}{(': ' + field['name']) if field.get('name') else ''}",
-                    f"    # {'(Required)' if field['required'] else '(Optional)'}",
-                    f"    #   Answers: {field['options']}" if field['options'] else f"    #   Validation Rule: {define_validation_rule_for_field_type(field['type'])}",
-]
+                f"    # ---------------------------------------{idx + 1}---------------------------------------------",
+                f"    # Question: {field['container_name']}{(': ' + field['name']) if field.get('name') else ''}",
+                f"    # {'(Required)' if field['required'] else '(Optional)'}",
+                f"    #   Answers: {field['options']}" if field[
+                    'options'] else f"    #   Validation Rule: {define_validation_rule_for_field_type(field['type'])}",
+            ]
             payload_parts.extend(comment_lines)
-           
 
         # Add the actual data part
         default_value = json.dumps(field.get("default_value", ""), ensure_ascii=False)
         field_id = field["id"]
         field_key = f"entry.{field_id}" if field.get("type") != "required" else field_id
-        
+
         payload_parts.append(f'    "{field_key}": {default_value}')
 
         if idx < len(fields) - 1:
             payload_parts.append(",")
 
     payload_parts.append("\n}")
-#     footer = [
-#                     f"    # ---------------------------------------------------------------------------------------",
-#                     f"    # Thanks ",
-#                     f"    # Author: ThangTX86",
-#                     f"    # Email: tranthang8696@gmail.com",
-#                     f"    # https://thangtx86.github.io  ",
-#                     f"    # ---------------------------------------------------------------------------------------",
-# ]
-#     payload_parts.extend(footer)
+    #     footer = [
+    #                     f"    # ---------------------------------------------------------------------------------------",
+    #                     f"    # Thanks ",
+    #                     f"    # Author: ThangTX86",
+    #                     f"    # Email: tranthang8696@gmail.com",
+    #                     f"    # https://thangtx86.github.io  ",
+    #                     f"    # ---------------------------------------------------------------------------------------",
+    # ]
+    #     payload_parts.extend(footer)
     return "\n".join(payload_parts)
+
+
+def define_validation_rule_for_field_type(field_type):
+    # Define your validation rules here based on field type
+    return "any text"  # Placeholder for actual validation rules
+
 
 def define_validation_rule_for_field_type(field_type):
     """Return the expected input rule for a given field type."""
@@ -175,36 +191,50 @@ def define_validation_rule_for_field_type(field_type):
     }
     return validation_rules.get(field_type, "any text")
 
-def handle_google_form_submission(form_url, output="console", only_required=False, include_comments=True, auto_fill_func=None):
+
+def handle_google_form_submission(form_url, output="console", only_required=False, include_comments=True,
+                                  auto_fill_func=None, n=1):
     """Main function to process Google Form submission."""
     fields = parse_google_form_fields(form_url, include_only_required=only_required)
-    
+    print("Getting response for your google form....")
+
     if not fields:
         return None
-    
-    if auto_fill_func:
-        fields = autofill_form_fields_with_defaults(fields, auto_fill_func)
 
-    payload = generate_submission_payload(fields, include_comments)
-    # print("Payload:", payload, flush=True)
-    
+    payloads = []  # Danh sách để chứa các payloads
+
+    for i in range(n):  # Lặp qua n lần
+        # Tạo lại các giá trị điền tự động mỗi lần lặp, giữ tính ngẫu nhiên
+        if auto_fill_func:
+            # Sao chép lại fields trước khi điền giá trị
+            fields_copy = [field.copy() for field in fields]
+            fields_copy = autofill_form_fields_with_defaults(fields_copy, auto_fill_func)
+        else:
+            fields_copy = fields  # Nếu không có auto_fill_func, sử dụng fields gốc
+
+        # Tạo payload từ fields đã được điền tự động
+        payload = generate_submission_payload(fields_copy, include_comments)
+        payloads.append(payload)  # Thêm payload vào danh sách
+
+    # Các phương thức xuất kết quả
     output_handlers = {
-        "console": lambda: print(payload),
-        "return": lambda: payload,
-        "file": lambda: helper.save_to_file(output, payload)
+        "console": lambda: print(payloads),
+        "return": lambda: payloads,  # Trả về list payloads
+        "file": lambda: helper.save_to_file(output, payloads[0])
     }
 
     handler = output_handlers.get(output)
 
     if handler:
         return handler()
-    # If output is not 'console' or 'return', save to file
+
+    # Nếu output không phải 'console' hoặc 'return', thì lưu vào file
     if output not in ["console", "return"]:
-        file_path = "output.txt"  # Specify a default or dynamic file path here
-        helper.save_to_file(file_path, payload)
-    
-    return None
-    
+        helper.save_to_file(output, payloads[0])
+
+    return payloads  # Trả về danh sách các payloads
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=" Autofill and Submit Google Form")
     parser.add_argument("url", help="url of the form")
