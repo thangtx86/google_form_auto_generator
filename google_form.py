@@ -166,15 +166,7 @@ def generate_submission_payload(fields, include_comments=True):
             payload_parts.append(",")
 
     payload_parts.append("\n}")
-    #     footer = [
-    #                     f"    # ---------------------------------------------------------------------------------------",
-    #                     f"    # Thanks ",
-    #                     f"    # Author: ThangTX86",
-    #                     f"    # Email: tranthang8696@gmail.com",
-    #                     f"    # https://thangtx86.github.io  ",
-    #                     f"    # ---------------------------------------------------------------------------------------",
-    # ]
-    #     payload_parts.extend(footer)
+    
     return "\n".join(payload_parts)
 
 

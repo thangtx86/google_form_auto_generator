@@ -18,7 +18,42 @@ def is_file_open(filepath):
         return True
 
 
-def save_payloads_to_excel(payload_generator, filename=RAW_DATA_PATH_FILE, chunk_size=10000):
+# def save_payloads_to_excel(payload_generator, filename=RAW_DATA_PATH_FILE, chunk_size=10000):
+#     # Kiểm tra nếu file đang mở
+#     if is_file_open(filename):
+#         print(f"File '{filename}' đang mở. Vui lòng đóng file và thử lại.")
+#         return
+
+#     # Mở một writer Excel để ghi từng payload vào
+#     with pd.ExcelWriter(filename, engine='xlsxwriter') as writer:
+#         chunk = []
+#         for i, payload in enumerate(payload_generator):
+#             chunk.append(payload)
+
+#             # Khi đủ chunk_size, ghi vào Excel
+#             if len(chunk) >= chunk_size:
+#                 df = pd.DataFrame(chunk)
+#                 df.to_excel(writer, sheet_name='Sheet1', startrow=i - len(chunk) + 1, header=(i == len(chunk) - 1),
+#                             index=False)
+#                 chunk = []  # Reset chunk sau khi ghi
+
+#         # Ghi những phần còn lại nếu có (khi n không chia hết cho chunk_size)
+#         if chunk:
+#             df = pd.DataFrame(chunk)
+#             df.to_excel(writer, sheet_name='Sheet1', startrow=i - len(chunk) + 1, header=(i == len(chunk) - 1),
+#                         index=False)
+
+#     print(f"Dữ liệu đã được lưu vào tệp '{filename}'.")
+
+import pandas as pd
+from xlsxwriter.utility import xl_rowcol_to_cell
+
+import pandas as pd
+
+import pandas as pd
+from xlsxwriter.utility import xl_rowcol_to_cell
+
+def save_payloads_to_excel(payload_generator, filename='raw_data.xlsx', chunk_size=10000, row_height=20, column_width=40):
     # Kiểm tra nếu file đang mở
     if is_file_open(filename):
         print(f"File '{filename}' đang mở. Vui lòng đóng file và thử lại.")
@@ -33,15 +68,51 @@ def save_payloads_to_excel(payload_generator, filename=RAW_DATA_PATH_FILE, chunk
             # Khi đủ chunk_size, ghi vào Excel
             if len(chunk) >= chunk_size:
                 df = pd.DataFrame(chunk)
-                df.to_excel(writer, sheet_name='Sheet1', startrow=i - len(chunk) + 1, header=(i == len(chunk) - 1),
-                            index=False)
+                start_row = i - len(chunk) + 1
+                df.to_excel(writer, sheet_name='Sheet1', startrow=start_row, header=(start_row == 0), index=False)
+                
+                # Lấy worksheet và chỉnh row height, column width
+                worksheet = writer.sheets['Sheet1']
+                for row in range(start_row, i + 1):
+                    worksheet.set_row(row, row_height)
+                for col_num in range(len(df.columns)):
+                    worksheet.set_column(col_num, col_num, column_width)
+                
+                # Áp dụng Table Style (Banded Rows)
+                if start_row == 0:  # Tạo Table Style cho phần đầu
+                    rows, cols = df.shape
+                    worksheet.add_table(
+                        start_row, 0, start_row + rows, cols - 1,
+                        {
+                            'columns': [{'header': col} for col in df.columns],
+                            'style': 'Table Style Medium 2'  # Bạn có thể thay đổi style tại đây
+                        }
+                    )
                 chunk = []  # Reset chunk sau khi ghi
 
-        # Ghi những phần còn lại nếu có (khi n không chia hết cho chunk_size)
+        # Ghi những phần còn lại nếu có
         if chunk:
             df = pd.DataFrame(chunk)
-            df.to_excel(writer, sheet_name='Sheet1', startrow=i - len(chunk) + 1, header=(i == len(chunk) - 1),
-                        index=False)
+            start_row = i - len(chunk) + 1
+            df.to_excel(writer, sheet_name='Sheet1', startrow=start_row, header=(start_row == 0), index=False)
+            
+            # Lấy worksheet và chỉnh row height, column width
+            worksheet = writer.sheets['Sheet1']
+            for row in range(start_row, i + 1):
+                worksheet.set_row(row, row_height)
+            for col_num in range(len(df.columns)):
+                worksheet.set_column(col_num, col_num, column_width)
+            
+            # Áp dụng Table Style (Banded Rows)
+            if start_row == 0:  # Tạo Table Style cho phần đầu
+                rows, cols = df.shape
+                worksheet.add_table(
+                    start_row, 0, start_row + rows, cols - 1,
+                    {
+                        'columns': [{'header': col} for col in df.columns],
+                        'style': 'Table Style Medium 2'  # Bạn có thể thay đổi style tại đây
+                    }
+                )
 
     print(f"Dữ liệu đã được lưu vào tệp '{filename}'.")
 
