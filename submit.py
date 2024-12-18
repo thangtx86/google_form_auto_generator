@@ -94,7 +94,6 @@ def update_answer(answer):
                         data=answer, timeout=5)
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(description=" Autofill and Submit Google Form")
     parser.add_argument("url", help="url of the form")
     parser.add_argument("-r", "--required", action="store_true", help="Only submit required fields")
