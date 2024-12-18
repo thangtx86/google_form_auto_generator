@@ -193,7 +193,7 @@ def define_validation_rule_for_field_type(field_type):
 
 
 def handle_google_form_submission(form_url, output="console", only_required=False, include_comments=True,
-                                  auto_fill_func=None, n=1):
+                                  auto_fill_func=None, repeat_count=1):
     """Main function to process Google Form submission."""
     fields = parse_google_form_fields(form_url, include_only_required=only_required)
     print("Getting response for your google form....")
@@ -203,7 +203,7 @@ def handle_google_form_submission(form_url, output="console", only_required=Fals
 
     payloads = []  # Danh sách để chứa các payloads
 
-    for i in range(n):  # Lặp qua n lần
+    for i in range(repeat_count):  # Lặp qua n lần
         # Tạo lại các giá trị điền tự động mỗi lần lặp, giữ tính ngẫu nhiên
         if auto_fill_func:
             # Sao chép lại fields trước khi điền giá trị

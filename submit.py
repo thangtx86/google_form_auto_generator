@@ -1,29 +1,14 @@
 import google_form as gf
 import form_submit as fs
-import file_helper
-import helper
-import random
-import json
+import file_helper as file
 import url_util
+import argparse
 import os
 import requests
+import json
+import helper
 import copy
 import adjust_answer as ans
-
-RESPONSE_PATH = "response.xlsx"
-
-
-def test_get():
-    gf.handle_google_form_submission(
-        form_url=url_util.URL_GET,
-        output="output.txt",
-    )
-
-
-def test_submit():
-    fs.main(
-        url=url_util.URL_GET
-    )
 
 
 def submit(url: str, data: any, callback=None):
@@ -60,29 +45,44 @@ def handle_response(data, edit_token, data_result):
     else:
         print("Form submission failed.")
 
+def generate_payloads(form_url, only_required, adjust_answer, repeat_count):
+    # Generator to create each payload
+    base_data = gf.handle_google_form_submission(
+        form_url,
+        only_required=only_required,
+        auto_fill_func=helper.random_answer_value,
+        output="return",
+        include_comments=False,
+        repeat_count=repeat_count
+    )
+    object_list = [json.loads(payload) for payload in base_data]
+    adjusted_object_list = [adjust_answer(item) for item in object_list]
+    return adjusted_object_list
 
-def submit_func():
+
+def submit_answers(url, file_path_url=None, only_required=False,repeat_count=1):
     counters = {'success': 0, 'fail': 0, 'total': 0}
     data_result = []
-    file_path = RESPONSE_PATH
-    payload_generator = fs.generate_payloads(url_util.URL_GET, False, ans.adjust_answer, 10)
+
+    file_path = file_path_url if file_path_url else file.RESULT_PATH_FILE
+    payload_generator = generate_payloads(form_url=url,only_required= only_required,adjust_answer=ans.adjust_answer,repeat_count=repeat_count)
     if os.path.exists(file_path):
-        file_helper.delete_file_if_open(file_path)
+        file.delete_file_if_open(file_path)
 
     for payload in payload_generator:
         counters['total'] += 1
 
         account = payload['emailAddress']
-        print(f'{counters["total"]}. {account} submitting to {url_util.URL_GET}')
+        print(f'{counters["total"]}. {account} submitting to {url}')
 
-        if submit(url=url_util.URL_GET, data=payload,
+        if submit(url=url, data=payload,
                   callback=lambda data, edit_token: handle_response(data, edit_token, data_result)):
             counters['success'] += 1
         else:
             counters['fail'] += 1
 
     print(len(data_result))
-    file_helper.save_payloads_to_excel(data_result, filename=RESPONSE_PATH)
+    file.save_payloads_to_excel(data_result, filename=file_path)
     print(f'Finished with {counters["total"]} submissions')
     print(f'Success: {counters["success"]}, Fail: {counters["fail"]}')
 
@@ -93,14 +93,17 @@ def update_answer(answer):
                                             "2_ABaOnufVWVQR0GHxNyZcNbud6mqtRaUTrglDyTtj8p7dQZzlUelfJBSq7ee16ixxeRuSWqY"),
                         data=answer, timeout=5)
 
-
-#  submit(url=, data=payload)
-
-
 if __name__ == "__main__":
-    # update_answer()
 
-    submit_func()
+    parser = argparse.ArgumentParser(description=" Autofill and Submit Google Form")
+    parser.add_argument("url", help="url of the form")
+    parser.add_argument("-r", "--required", action="store_true", help="Only submit required fields")
+    parser.add_argument("-f", type=str, help="Path to the file for saving results")
+    parser.add_argument("-n", type=int, default=1, help="Number of times to run the form submission (default is 1)")
+    args = parser.parse_args()
+    submit_answers(args.url, file_path_url=args.f, only_required=args.required,repeat_count=args.n)
+       
+   
     # print(modify_url(URL_GET,"i28282"))
     # gf.handle_google_form_submission2(
     #    form_url= URL_GET,

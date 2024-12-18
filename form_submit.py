@@ -9,7 +9,7 @@ import helper
 from vn_fullname_generator import generator
 
 
-def generate_payloads(form_url, only_required, adjust_data, n):
+def generate_payloads(form_url, only_required, adjust_data, repeat_count):
     # Generator to create each payload
     base_data = google_form.handle_google_form_submission(
         form_url,
@@ -17,7 +17,7 @@ def generate_payloads(form_url, only_required, adjust_data, n):
         auto_fill_func=helper.random_answer_value,
         output="return",
         include_comments=False,
-        n=n
+        repeat_count=repeat_count
     )
     object_list = [json.loads(payload) for payload in base_data]
     adjusted_object_list = [adjust_data(item) for item in object_list]

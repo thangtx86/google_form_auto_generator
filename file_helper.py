@@ -1,8 +1,11 @@
 import pandas as pd
 import os
-import time
 from openpyxl import load_workbook
 import psutil
+
+RAW_DATA_PATH_FILE = "data/raw_data.xlsx"
+RESULT_PATH_FILE = "data/result.xlsx"
+TEMPLATE_DATA_PATH_FILE = "data/template_data.txt"
 
 
 def is_file_open(filepath):
@@ -15,7 +18,7 @@ def is_file_open(filepath):
         return True
 
 
-def save_payloads_to_excel(payload_generator, filename="output_data.xlsx", chunk_size=10000):
+def save_payloads_to_excel(payload_generator, filename=RAW_DATA_PATH_FILE, chunk_size=10000):
     # Kiểm tra nếu file đang mở
     if is_file_open(filename):
         print(f"File '{filename}' đang mở. Vui lòng đóng file và thử lại.")
